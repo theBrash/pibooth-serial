@@ -26,7 +26,7 @@ def pibooth_startup(app, cfg):
 
 @pibooth.hookimpl
 def state_wait_do(app, events):
-    if(app.serial):
+    if(app.serial.isOpen()):
         try:
             serial_ports = serial.tools.list_ports.comports()
             app.serial = serial.Serial(port=serial_ports[0],  baudrate=9600, timeout=2)
