@@ -18,6 +18,7 @@ def pibooth_startup(app, cfg):
     try:
         app.serial = serial.Serial(port='/dev/ttyUSB0',  baudrate=9600, timeout=2)
         LOGGER.info("serial connection successful")
+        app._on_button_capture_held()
     except:
         LOGGER.info("Failed serial connection on port /dev/ttyUSB0")
 
