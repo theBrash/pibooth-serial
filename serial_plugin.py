@@ -17,6 +17,8 @@ def pibooth_startup(app, cfg):
     LOGGER.info("serial startup")
     try:
         serial_ports = serial.tools.list_ports.comports()
+        for port in serial_ports:
+            LOGGER.info("Serial Port:" + port)
         app.serial = serial.Serial(port=serial_ports[0],  baudrate=9600, timeout=2)
         LOGGER.info("serial connection successful")
         app._on_button_capture_held()
