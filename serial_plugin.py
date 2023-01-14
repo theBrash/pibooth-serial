@@ -17,7 +17,7 @@ def pibooth_startup(app, cfg):
     LOGGER.info("serial startup")
     try:
         serial_ports = serial.tools.list_ports.comports()
-        LOGGER.info("Serial Port:" + serial_ports[0])
+        LOGGER.info("Serial Port:" + serial_ports)
         app.serial = serial.Serial(port=serial_ports[0],  baudrate=9600, timeout=2)
         LOGGER.info("serial connection successful")
         app._on_button_capture_held()
@@ -26,7 +26,7 @@ def pibooth_startup(app, cfg):
 
 @pibooth.hookimpl
 def state_wait_do(app, events):
-    if(app.serial == None):
+    if(app.serial):
         try:
             serial_ports = serial.tools.list_ports.comports()
             app.serial = serial.Serial(port=serial_ports[0],  baudrate=9600, timeout=2)
