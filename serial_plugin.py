@@ -23,8 +23,8 @@ def pibooth_startup(app, cfg):
             arduino_serial_port = port.device
     
     LOGGER.info("selected serial port: "+ str(arduino_serial_port))
-    app.serial = serial.Serial(port=str(arduino_serial_port),  baudrate=9600, timeout=2)
     try:
+        app.serial = serial.Serial(port=str(arduino_serial_port),  baudrate=9600, timeout=2)
         LOGGER.info("serial connection successful")
         app._on_button_capture_held()
     except:
